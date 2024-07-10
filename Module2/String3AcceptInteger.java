@@ -1,3 +1,8 @@
+/*Write a Java program that accepts an integer (n) and computes the value of
+n+nn+nnn. Input number: 5
+5 + 55 + 555
+*/
+
 package module2;
 
 import java.util.Scanner;
@@ -21,9 +26,7 @@ Scanner sc = new Scanner(System.in);
 		int nn = Integer.parseInt(nnstr);
 		int nnn = Integer.parseInt(nnnstr);
 		
-		int ans = i + nn + nnn;
-		
-		System.out.println("The value of " + i + " + " + nn + " + " + nnn + " is: " + ans);
+		System.out.println(i + " + " + nn + " + " + nnn);
 		
 	}
 }

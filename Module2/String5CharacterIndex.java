@@ -18,7 +18,7 @@ public class String5CharacterIndex
 
 	        Scanner scanner = new Scanner(System.in);
 
-	        System.out.print("Enter an index to get the character at that position: ");
+	        System.out.print("Enter an index to get the character: ");
 	        int index = scanner.nextInt();
 
 	        if (index >= 0 && index < oriString.length())

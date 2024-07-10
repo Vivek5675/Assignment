@@ -19,7 +19,6 @@ public class String7EqualString
 
         boolean areEqual = firstString.equals(secondString);
 
-        // Display the result
         System.out.println("Comparing " + firstString + " and " + secondString + " : " + areEqual);
 	}
 }

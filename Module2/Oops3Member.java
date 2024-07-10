@@ -34,7 +34,7 @@ package module2;
 	    
 	    public static void main(String[] args)
 	    {
-	    	Oops3Member member1 = new Oops3Member("John Doe", 30, "1234567890", "123 Street, City", 50000.0);
+	    	Oops3Member member1 = new Oops3Member("vivek ", 30, "1234567890", "123 Street, City", 50000);
 	        member1.printSalary();
 	    }
 	}

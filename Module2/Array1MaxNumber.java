@@ -1,3 +1,5 @@
+/*Write a java program to find out the max number from given array using function*/
+
 package module2;
 
 public class Array1MaxNumber 

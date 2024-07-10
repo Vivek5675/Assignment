@@ -7,8 +7,8 @@ public class Array2SecondMaxNumber
 {
     public static int findSecondMax(int[] array) 
     {
-        int max = 0; //= Integer.MIN_VALUE;
-        int secondMax = 0; //= Integer.MIN_VALUE;
+        int max = 0;
+        int secondMax = 0;
 
         for (int num : array) 
         {
