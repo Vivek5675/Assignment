@@ -1,0 +1,135 @@
+i)  Select unique job from EMP table.
+
+	--> SELECT DISTINCT job FROM EMP;
+
+ii) List the details of the emps in asc order of the Dptnos and desc of Jobs?
+
+	asc deptno --> SELECT * FROM EMP ORDER BY Deptno ASC;
+
+	desc job --> SELECT * FROM EMP ORDER BY Job DESC;
+
+iii) Display all the unique job groups in the descending order?
+
+	--> SELECT DISTINCT job FROM EMP ORDER BY job DESC;
+
+iv) List the emps who joined before 1981.
+
+	--> SELECT * FROM EMP WHERE hiredate < '1981-01-01';
+
+v) List the Empno, Ename, Sal, Daily sal of all emps in the asc order of Annsal.
+
+	--> SELECT Empno, Ename, Sal, (Sal / 30) AS Daily_sal, (Sal * 12) AS Annsal FROM EMP ORDER BY Annsal ASC;
+
+vi) List the Empno, Ename, Sal, Exp of all emps working for Mgr 7369.
+
+	--> SELECT Empno, Ename, Sal, (CURRENT_DATE - hiredate) AS Exp FROM EMP WHERE Mgr = 7369;
+
+vii) Display all the details of the emps who’s Comm. Is more than their Sal?
+
+	--> SELECT * FROM EMP WHERE Comm > Sal;
+
+viii) List the emps who are either ‘CLERK’ or ‘ANALYST’ in the Desc order
+
+	--> SELECT * FROM EMP WHERE job IN ('CLERK', 'ANALYST') ORDER BY Ename DESC;
+
+ix) List the emps Who Annual sal ranging from 22000 and 45000
+
+	--> SELECT * FROM EMP WHERE (Sal * 12) BETWEEN 22000 AND 45000;
+
+x) List the Enames those are starting with ‘S’ and with five characters.
+
+	--> SELECT Ename FROM EMP WHERE Ename LIKE 'S%' AND LENGTH(Ename) = 5;
+
+xi) List the emps whose Empno not starting with digit78.
+
+	--> SELECT * FROM EMP WHERE Empno NOT LIKE '78%';
+
+xii) List all the Clerks of Deptno 20
+
+	--> SELECT * FROM EMP WHERE job = 'CLERK' AND Deptno = 20;
+
+xiii) List the Emps who are senior to their own MGRS.
+
+	--> SELECT * FROM emp w, emp m WHERE w.Mgr = m.Empno;
+
+xiv) List the Emps of Deptno 20 who’s Jobs are same as Deptno 10.
+
+	--> SELECT * FROM EMP WHERE Deptno = 20 AND Job IN ( SELECT DISTINCT Job FROM EMP WHERE Deptno = 10 );
+
+xv) List the Emps who’s Sal is same as FORD or SMITH in desc order of Sal.
+
+	--> SELECT * FROM EMP WHERE Sal IN (SELECT Sal FROM emp WHERE Ename = 'FORD' OR Ename = 'SMITH') ORDER BY Sal DESC;
+
+xvi) List the emps whose jobs same as SMITH or ALLEN.
+
+	--> SELECT * FROM EMP WHERE Job IN (SELECT Job FROM emp WHERE Ename = 'ALLEN' OR Ename = 'SMITH');
+
+xvii) Any jobs of deptno 10 those that are not found in deptno 20.
+
+	--> SELECT DISTINCT Job FROM EMP WHERE Deptno = 10 AND Job NOT IN ( SELECT DISTINCT Job FROM EMP WHERE Deptno = 20 );
+
+xviii. Find the highest sal of EMP table.
+
+	--> SELECT MAX(Sal) FROM EMP;
+
+xix) Find details of highest paid employee.
+
+	--> SELECT * FROM EMP WHERE Sal = (SELECT MAX(Sal) FROM EMP);
+
+xx) Find the total sal given to the MGR.
+
+	--> SELECT SUM(Sal) FROM EMP WHERE MGR AND Mgr IS NOT NULL;
+
+xxi) List the emps whose names contains ‘A’.
+
+	--> SELECT * FROM EMP WHERE Ename LIKE '%A%';
+
+xxii) Find all the emps who earn the minimum Salary for each job wise in ascending order.
+
+	--> SELECT * FROM EMP e1 WHERE Sal = ( SELECT MIN(Sal) FROM EMP e2 WHERE e1.job LIKE e2.job ) ORDER BY job ASC;
+
+xxiii) List the emps whose sal greater than Blake’s sal.
+
+	--> SELECT * FROM EMP WHERE Sal > ( SELECT Sal FROM EMP WHERE Ename = 'BLAKE' );
+
+xxiv) Create view v1 to select ename, job, dname, loc whose deptno are same.
+
+	--> CREATE VIEW v1 AS SELECT EMP.ename,EMP.job,DEPT.dname,DEPT.loc FROM EMP JOIN DEPT ON EMP.deptno = DEPT.deptno;
+
+xxv) Create a procedure with dno as input parameter to fetch ename and dname.
+
+	--> DELIMITER //
+
+		CREATE PROCEDURE fetchdata(IN p_dno INT)
+	     BEGIN
+
+    		SELECT EMP.Ename, DEPT.Dname FROM EMP
+    		JOIN DEPT ON EMP.deptno = DEPT.deptno WHERE EMP.deptno = p_dno;
+
+	     END//
+
+	     DELIMITER ;
+
+
+xxvi) Add column Pin with bigint data type in table student.
+
+	--> ALTER TABLE student ADD pin BIGINT;
+
+xxvii) Modify the student table to change the sname length from 14 to 40. Create trigger to insert data in emp_log table 
+whenever any update of sal in EMP table. You can set action as ‘New Salary’.
+
+	--> ALTER TABLE student MODIFY sname varchar(40);
+
+	DELIMITER $$
+
+		CREATE TRIGGER emp_sal_update AFTER UPDATE ON EMP FOR EACH ROW
+			 BEGIN 
+				INSERT INTO emp_log SET ACTION = 'New salary'; 
+			END
+			$$
+	DELIMITER //
+     
+
+
+
+
